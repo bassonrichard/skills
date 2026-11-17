@@ -2,9 +2,11 @@
 
 Twenty rules with the values to use. "Avoid" is the common default that makes
 motion feel cheap; "Use" is the fix. Values marked † are this skill's own
-defaults where the source showed the technique but no number.
+defaults where the source showed the technique but no number. Items marked ‡
+come from Charles Liu's published skills (see Provenance).
 
 ## Contents
+- Should it move at all?
 - Easing
 - Duration and stagger
 - Origin and path
@@ -13,6 +15,25 @@ defaults where the source showed the technique but no number.
 - Always
 - Reviewing existing motion
 - Provenance
+
+## Should it move at all? ‡
+
+Decide this before tuning anything. The right curve on an animation that
+shouldn't exist is still wrong.
+
+| How often it fires | What it gets |
+|---|---|
+| 100+ times a day, or from a keyboard shortcut (command palette, tab switch, typing) | No transition that delays the action. Speed beats smoothness. Instant press feedback is still fine |
+| Occasionally (menu, modal, drawer) | Standard motion, under 300 ms |
+| Rarely or once (success, onboarding, a reveal) | May be choreographed |
+
+Then ask what question the motion answers: where did this come from, did that
+register, what caused this? If it answers none, cut it. Delete on sight:
+
+- looping pulses, pings and breathing glows on things that aren't live
+- shimmer on headings, parallax, elements drifting on scroll
+- every section fading in on scroll, and entrances on things already at rest at page load
+- `hover:scale` on cards - use a colour or surface step on hover and keep scale for the press
 
 ## Easing
 
@@ -35,6 +56,10 @@ the transition on release for the settle.
 | 3 | List rows entering | 200 ms between rows | ~30 ms between rows. Cap the total † (stop staggering after ~8-10 rows) so long lists don't crawl |
 | 15 | Exits | same duration as the entrance | ~20% shorter than the entrance: 250 ms in → 200 ms out |
 | 6 | Attached details (badge, counter, icon riding on a moving card) | everything stopping rigidly on the same frame | the detail trails its parent by ~50 ms and settles just after it |
+
+Durations for the rest ‡: hover, press and colour changes 100-150 ms; tooltips
+150-250 ms; modals, drawers and toasts 200-300 ms; page transitions 300-400 ms.
+If something feels slow, cut the duration before changing anything else.
 
 Rule 6 is follow-through, not list stagger: one object moves, and its small
 attachments arrive a beat late. It applies to secondary parts of a single
@@ -83,10 +108,13 @@ shared `view-transition-name`, or a FLIP animation.
 
 - Animate `transform` and `opacity`; avoid animating layout properties (`width`, `height`, `top`, `left`) †.
 - Honour `prefers-reduced-motion` / the OS reduce-motion setting †: drop movement, scale and stretch; keep short opacity fades so state changes are still visible.
+- Keep it interruptible ‡: never lock input while something animates, and let a reversed action start from where the element is on screen. Interactive states use transitions or springs, which retarget mid-flight; keyframes restart, so keep them for one-shots.
+- Name the properties a transition animates ‡. `transition: all` animates things nobody chose.
 
 ## Reviewing existing motion
 
-Walk the surface in order of how often each thing fires: press states → menus
+First decide whether each animation should exist (see the top of this file).
+Then walk the surface in order of how often each thing fires: press states → menus
 and popovers → toggles and drags → list and page entrances. For each animated
 element note what it does now (duration, easing, from/to, origin), which rule
 it breaks, and the exact replacement values.
@@ -96,6 +124,9 @@ it breaks, and the exact replacement values.
 Rules 1-20 and their before/after values come from Charles Liu's
 "20 Ways to Make Beautiful AI Animations" (@charles.unemployed, TikTok),
 checked against the on-screen demos, which label each pair. Items marked † and
-the "Always" section are this skill's additions. Rule 13's demo shows a card,
+the unmarked lines of the "Always" section are this skill's additions. Items
+marked ‡ are adapted, in this skill's own words, from `charles-polish` and
+`charles-unslop` in github.com/LemonFace0309/charles-skills; `charles-unslop`
+is adapted from unslop by Damir Sokolovsky (@heydamir), CC BY 4.0. Rule 13's demo shows a card,
 so "everyday UI" is the source's own wording; the icon-swap values in rule 18
 and the arc scaling in rule 7 are not given by the source.

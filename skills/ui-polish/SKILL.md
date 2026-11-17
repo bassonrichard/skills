@@ -24,10 +24,12 @@ Read only what the task needs.
 ## How to work
 
 1. **Read the actual code first** and note which library drives motion (CSS, Motion, Reanimated, GSAP, SwiftUI). The rules are library-neutral values; express them in whatever is already installed. Adding a dependency to animate a dropdown is the wrong trade.
-2. **The project's own tokens win.** If it has motion or design tokens, map the rules onto them and only flag tokens that break a rule badly (a 600 ms menu, a 3:1 body colour).
-3. **Fix the frequent things first.** A press state or menu is felt hundreds of times a session; a hero entrance once.
-4. **Don't invent content.** A specific headline needs real facts and "show the product" needs a real screenshot. Where those are missing, leave a clearly marked placeholder and ask - made-up numbers on a landing page are worse than a vague headline.
-5. **Keep accessibility intact:** reduced-motion handling, body contrast of at least 4.5:1, visible focus states.
+2. **Look at it rendered.** Where a browser or simulator is available, screenshot the surface at its real size, and at the smallest size it will be seen, and judge that. Code hides what the eye catches in a second. If you can't render it, say so in the report.
+3. **Match the scope to what you find.** Tells everywhere: run the whole relevant list. A designed screen with a few tells: fix only those and leave its palette, type and layout alone. No tells: say so, suggest at most three refinements with exact values, and stop. Never change a good screen just to make it different.
+4. **The project's own tokens win.** If it has motion or design tokens, map the rules onto them and only flag tokens that break a rule badly (a 600 ms menu, a 3:1 body colour).
+5. **Fix the frequent things first.** A press state or menu is felt hundreds of times a session; a hero entrance once.
+6. **Don't invent content.** A specific headline needs real facts and "show the product" needs a real screenshot. Where those are missing, leave a clearly marked placeholder and ask - made-up numbers on a landing page are worse than a vague headline.
+7. **Keep accessibility intact:** reduced-motion handling, body contrast of at least 4.5:1, visible focus states.
 
 ## What to hand back
 
