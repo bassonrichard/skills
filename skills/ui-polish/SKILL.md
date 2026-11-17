@@ -29,7 +29,7 @@ Read only what the task needs.
 4. **The project's own tokens win.** If it has motion or design tokens, map the rules onto them and only flag tokens that break a rule badly (a 600 ms menu, a 3:1 body colour).
 5. **Fix the frequent things first.** A press state or menu is felt hundreds of times a session; a hero entrance once.
 6. **Don't invent content.** A specific headline needs real facts and "show the product" needs a real screenshot. Where those are missing, leave a clearly marked placeholder and ask - made-up numbers on a landing page are worse than a vague headline.
-7. **Keep accessibility intact:** reduced-motion handling, body contrast of at least 4.5:1, visible focus states.
+7. **Leave every control you touch usable**, whichever reference you read: reduced-motion handling, body contrast of at least 4.5:1, visible focus states, a hit area of at least 44×44 px for touch and 40×40 px on desktop (extend the target with padding or a pseudo-element, not the drawn size), and hover styles gated to `@media (hover: hover)` that change colour, never font weight. Fix these where the surface falls short, even on a motion-only task.
 
 ## What to hand back
 
